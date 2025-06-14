@@ -1,6 +1,7 @@
 import 'package:fashion/componants/custom_appbar.dart';
 import 'package:fashion/componants/custom_text.dart';
 import 'package:fashion/core/app_colors.dart';
+import 'package:fashion/models/cover_model.dart';
 import 'package:fashion/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -85,9 +86,41 @@ class Home extends StatelessWidget {
                     fontSize: 25,
                   ),
                   Gap(5),
-                  Image.asset("assets/svgs/line.png", width: 180),
+                  Image.asset("assets/svgs/line.png", width: 190),
+                  Gap(30),
+                  SizedBox(
+                    height: 400,
+                    child: ListView.builder(
+                      itemCount: CoverModel.covers.length,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
 
-                  Gap(50),
+                      itemBuilder: (context, index) {
+                        final item = CoverModel.covers[index];
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Image.asset(
+                                  item.image,
+                                  height: 350,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              Gap(10),
+                              Customtext(
+                                text: item.title.toUpperCase(),
+                                fontSize: 20,
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  Gap(300),
                 ],
               ),
             ),
