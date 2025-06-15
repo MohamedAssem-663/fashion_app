@@ -6,12 +6,9 @@ import 'package:fashion/componants/design.dart';
 import 'package:fashion/componants/products.dart';
 import 'package:fashion/componants/social_media.dart';
 import 'package:fashion/core/app_colors.dart';
-import 'package:fashion/models/cover_model.dart';
-import 'package:fashion/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:ionicons/ionicons.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
