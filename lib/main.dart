@@ -1,4 +1,4 @@
-import 'package:fashion/screens/home.dart';
+import 'package:fashion/core/Utils/function/app_router.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,12 +11,11 @@ class FashionApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: AppRouter.router,
       title: 'Fashion App',
 
       debugShowCheckedModeBanner: false,
-      home: Home(),
-      
     );
   }
 }
