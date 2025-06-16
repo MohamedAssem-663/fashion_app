@@ -48,12 +48,12 @@ class ProductModel {
       price: 39.99,
     ),
   ];
-  factory ProductModel.fromJson(Map<String, dynamic> json) {
-    return ProductModel(
-      image: json['image'] as String,
-      name: json['name'] as String,
-      description: json['description'] as String,
-      price: (json['price'] as num).toDouble(),
-    );
-  }
+  // factory ProductModel.fromJson(Map<String, dynamic> json) {
+  //   return ProductModel(
+  //     image: json['image'] as String,
+  //     name: json['name'] as String,
+  //     description: json['description'] as String,
+  //     price: (json['price'] as num).toDouble(),
+  //   );
+  // }
 }

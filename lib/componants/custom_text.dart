@@ -9,6 +9,7 @@ class Customtext extends StatelessWidget {
     this.color = Colors.white,
     this.max = 1,
     this.height = 1,
+    this.spacing = 1,
   });
   final String text;
   final double fontSize;
@@ -16,6 +17,7 @@ class Customtext extends StatelessWidget {
   final Color color;
   final int max;
   final double height;
+  final double spacing;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +30,7 @@ class Customtext extends StatelessWidget {
         fontWeight: weight,
         fontFamily: "TenorSans",
         height: height,
+        letterSpacing: spacing,
       ),
     );
   }
