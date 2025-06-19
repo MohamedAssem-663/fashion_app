@@ -5,16 +5,18 @@ import 'package:fashion/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-class CardWidget extends StatefulWidget {
-  const CardWidget({super.key, required this.product});
+class CardWidget extends StatelessWidget {
+  const CardWidget({
+    super.key,
+    required this.product,
+    required this.quantity,
+    required this.onIncrement,
+    required this.onDecrement,
+  });
   final ProductModel product;
-
-  @override
-  State<CardWidget> createState() => _CardWidgetState();
-}
-
-class _CardWidgetState extends State<CardWidget> {
-  int qwantity = 1;
+  final int quantity;
+  final VoidCallback onIncrement;
+  final VoidCallback onDecrement;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class _CardWidgetState extends State<CardWidget> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image.asset(widget.product.image, width: 120),
+        Image.asset(product.image, width: 120),
         Gap(10),
         Expanded(
           child: Column(
@@ -31,7 +33,7 @@ class _CardWidgetState extends State<CardWidget> {
             children: [
               Gap(5),
               Customtext(
-                text: widget.product.name.toUpperCase(),
+                text: product.name.toUpperCase(),
                 fontSize: 20,
                 color: AppColors.primary,
                 spacing: 3,
@@ -40,7 +42,7 @@ class _CardWidgetState extends State<CardWidget> {
               SizedBox(
                 width: size.width * 0.6,
                 child: Customtext(
-                  text: widget.product.description,
+                  text: product.description,
                   color: Colors.grey,
                   max: 2,
                 ),
@@ -50,17 +52,13 @@ class _CardWidgetState extends State<CardWidget> {
                 children: [
                   Qwantity(
                     onTap: () {
-                      setState(() {
-                        if (qwantity > 1) {
-                          qwantity--;
-                        }
-                      });
+                      onDecrement();
                     },
                     svg: "assets/svgs/min.svg",
                   ),
                   Gap(10),
                   Customtext(
-                    text: qwantity.toString(),
+                    text: quantity.toString(),
                     color: AppColors.primary,
                     weight: FontWeight.bold,
                   ),
@@ -68,9 +66,7 @@ class _CardWidgetState extends State<CardWidget> {
 
                   Qwantity(
                     onTap: () {
-                      setState(() {
-                        qwantity++;
-                      });
+                      onIncrement();
                     },
                     svg: "assets/svgs/plus.svg",
                   ),
@@ -78,7 +74,7 @@ class _CardWidgetState extends State<CardWidget> {
               ),
               Gap(30),
               Customtext(
-                text: "\$ ${widget.product.price.toString()}",
+                text: "\$ ${product.price.toString()}",
                 color: Colors.red.shade200,
                 fontSize: 20,
                 weight: FontWeight.bold,
