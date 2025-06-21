@@ -5,10 +5,12 @@ import 'package:fashion/componants/custom_button.dart';
 import 'package:fashion/componants/custom_divider.dart';
 import 'package:fashion/componants/custom_text.dart';
 import 'package:fashion/componants/header.dart';
+import 'package:fashion/core/Utils/function/app_router.dart';
 import 'package:fashion/core/app_colors.dart';
 import 'package:fashion/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
 class CheckOut extends StatefulWidget {
   const CheckOut({super.key, required this.product});
@@ -74,7 +76,16 @@ class _CheckOutState extends State<CheckOut> {
               ],
             ),
             Gap(20),
-            CustomButton(isSvgg: true, titel: "Checkout", onTap: () {}),
+            CustomButton(
+              isSvgg: true,
+              titel: "Checkout",
+              onTap: () {
+                GoRouter.of(context).push(
+                  AppRouter.kPlaceOrder,
+                  extra: {'product': widget.product, 'total': total},
+                );
+              },
+            ),
             Gap(30),
           ],
         ),
