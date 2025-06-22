@@ -1,8 +1,8 @@
 import 'package:fashion/models/product_model.dart';
-import 'package:fashion/screens/home.dart';
-import 'package:fashion/screens/checkout.dart';
+import 'package:fashion/screens/home/home.dart';
+import 'package:fashion/screens/checkout/checkout.dart';
 import 'package:fashion/screens/personal_data.dart';
-import 'package:fashion/screens/place_order.dart';
+import 'package:fashion/screens/place_order/place_order.dart';
 import 'package:fashion/screens/splash_view.dart';
 import 'package:go_router/go_router.dart';
 

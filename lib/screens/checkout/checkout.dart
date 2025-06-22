@@ -1,5 +1,5 @@
-import 'package:fashion/componants/bromo.dart';
-import 'package:fashion/componants/card_widget.dart';
+import 'package:fashion/screens/checkout/widgets/bromo.dart';
+import 'package:fashion/screens/checkout/widgets/card_widget.dart';
 import 'package:fashion/componants/custom_appbar.dart';
 import 'package:fashion/componants/custom_button.dart';
 import 'package:fashion/componants/custom_divider.dart';

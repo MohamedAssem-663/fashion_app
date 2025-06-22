@@ -1,5 +1,5 @@
 import 'package:fashion/componants/custom_text.dart';
-import 'package:fashion/componants/qwantity.dart';
+import 'package:fashion/screens/checkout/widgets/qwantity.dart';
 import 'package:fashion/core/app_colors.dart';
 import 'package:fashion/models/product_model.dart';
 import 'package:flutter/material.dart';

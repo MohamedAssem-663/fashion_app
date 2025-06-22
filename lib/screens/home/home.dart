@@ -1,10 +1,10 @@
-import 'package:fashion/componants/about.dart';
-import 'package:fashion/componants/copy_right.dart';
+import 'package:fashion/screens/home/widgets/about.dart';
+import 'package:fashion/screens/home/widgets/copy_right.dart';
 import 'package:fashion/componants/custom_appbar.dart';
 import 'package:fashion/componants/custom_text.dart';
-import 'package:fashion/componants/design.dart';
-import 'package:fashion/componants/products.dart';
-import 'package:fashion/componants/social_media.dart';
+import 'package:fashion/screens/home/widgets/design.dart';
+import 'package:fashion/screens/home/widgets/products.dart';
+import 'package:fashion/screens/home/widgets/social_media.dart';
 import 'package:fashion/core/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
