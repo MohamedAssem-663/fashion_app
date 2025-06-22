@@ -17,7 +17,7 @@ class ProductInformation extends StatelessWidget {
         Customtext(text: "SHIPPING ADRESS", color: Colors.grey, fontSize: 20),
         Gap(15),
         Customtext(
-          text: product.name.toUpperCase(),
+          text: "Iris Watson".toUpperCase(),
           fontSize: 24,
           color: AppColors.primary,
         ),
@@ -30,13 +30,19 @@ class ProductInformation extends StatelessWidget {
               Column(
                 children: [
                   Customtext(
-                    text: product.description,
+                    text: "shipping address",
                     fontSize: 20,
                     color: Colors.black54,
                   ),
                   Gap(15),
                   Customtext(
-                    text: product.description,
+                    text: "shipping address",
+                    fontSize: 20,
+                    color: Colors.black54,
+                  ),
+                  Gap(15),
+                  Customtext(
+                    text: "shipping address",
                     fontSize: 20,
                     color: Colors.black54,
                   ),

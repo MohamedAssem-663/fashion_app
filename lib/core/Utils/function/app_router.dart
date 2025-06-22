@@ -1,7 +1,7 @@
 import 'package:fashion/models/product_model.dart';
 import 'package:fashion/screens/home/home.dart';
 import 'package:fashion/screens/checkout/checkout.dart';
-import 'package:fashion/screens/personal_data.dart';
+import 'package:fashion/screens/adress/add_adress.dart';
 import 'package:fashion/screens/place_order/place_order.dart';
 import 'package:fashion/screens/splash_view.dart';
 import 'package:go_router/go_router.dart';
@@ -10,7 +10,7 @@ abstract class AppRouter {
   static const kHomeView = '/home';
   static const kCheckOut = "/checkout";
   static const kPlaceOrder = "/placeorder";
-  static const kPresonalData = "/presonaldata";
+  static const kAddAdress = "/addadress";
 
   static final router = GoRouter(
     routes: [
@@ -34,8 +34,8 @@ abstract class AppRouter {
         },
       ),
       GoRoute(
-        path: AppRouter.kPresonalData,
-        builder: (context, state) => PresonalData(),
+        path: AppRouter.kAddAdress,
+        builder: (context, state) => AddAdress(),
       ),
     ],
   );

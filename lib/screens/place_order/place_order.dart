@@ -22,12 +22,22 @@ class PlaceOrder extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Header(title: "CheckOut"),
             ProductInformation(product: product),
-            Gap(15),
-            customContainer("Add New Address", Icons.add, false),
+            Gap(20),
+            customContainer(
+              "Add New Address",
+              Icons.add,
+              false,
+              () {
+                GoRouter.of(context).push(AppRouter.kAddAdress);
+              },
+              () {
+                GoRouter.of(context).push(AppRouter.kAddAdress);
+              },
+            ),
             Gap(30),
             Customtext(
               text: "Shipping MethoD".toUpperCase(),
@@ -39,6 +49,8 @@ class PlaceOrder extends StatelessWidget {
               "Pickup at store",
               Icons.keyboard_arrow_down_sharp,
               true,
+              () {},
+              () {},
             ),
             Gap(30),
             Customtext(
@@ -51,6 +63,8 @@ class PlaceOrder extends StatelessWidget {
               "select payment method",
               Icons.keyboard_arrow_down_sharp,
               false,
+              () {},
+              () {},
             ),
             Spacer(),
             Row(
@@ -74,9 +88,7 @@ class PlaceOrder extends StatelessWidget {
             CustomButton(
               isSvgg: true,
               titel: "Place order".toUpperCase(),
-              onTap: () {
-                GoRouter.of(context).push(AppRouter.kPresonalData);
-              },
+              onTap: () {},
             ),
             Gap(30),
           ],
@@ -86,28 +98,31 @@ class PlaceOrder extends StatelessWidget {
   }
 }
 
-Widget customContainer(text, icon, isFree) {
-  return Container(
-    width: double.infinity,
-    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-    decoration: BoxDecoration(
-      color: Colors.grey.shade100,
-      borderRadius: BorderRadius.circular(100),
-    ),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Customtext(text: text, color: AppColors.primary),
-        Spacer(),
-        isFree
-            ? Customtext(text: "FREE", color: AppColors.primary)
-            : SizedBox.shrink(),
-        Gap(10),
-        IconButton(
-          onPressed: () {},
-          icon: Icon(icon, color: AppColors.primary),
-        ),
-      ],
+Widget customContainer(text, icon, isFree, onPressed, onTap) {
+  return GestureDetector(
+    onTap: onTap,
+    child: Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade100,
+        borderRadius: BorderRadius.circular(100),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Customtext(text: text, color: AppColors.primary),
+          Spacer(),
+          isFree
+              ? Customtext(text: "FREE", color: AppColors.primary)
+              : SizedBox.shrink(),
+          Gap(10),
+          IconButton(
+            onPressed: onPressed,
+            icon: Icon(icon, color: AppColors.primary),
+          ),
+        ],
+      ),
     ),
   );
 }
