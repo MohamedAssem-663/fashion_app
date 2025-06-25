@@ -15,7 +15,7 @@ class Header extends StatelessWidget {
           text: title.toUpperCase(),
           fontSize: 30,
           color: AppColors.primary,
-          spacing: 10,
+          spacing: 3,
         ),
         Gap(5),
         Image.asset(

@@ -1,10 +1,13 @@
 import 'package:fashion/componants/custom_appbar.dart';
 import 'package:fashion/componants/custom_button.dart';
+import 'package:fashion/componants/custom_divider.dart';
 import 'package:fashion/componants/custom_text.dart';
 import 'package:fashion/componants/header.dart';
 import 'package:fashion/core/Utils/function/app_router.dart';
 import 'package:fashion/core/app_colors.dart';
 import 'package:fashion/models/product_model.dart';
+import 'package:fashion/screens/checkout/widgets/card_widget.dart';
+import 'package:fashion/screens/place_order/widgets/shipping_method.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
@@ -21,7 +24,10 @@ class PlaceOrder extends StatefulWidget {
 
 class _PlaceOrderState extends State<PlaceOrder> {
   dynamic _savedAddress;
+  dynamic _savedCard;
+  int qwantity = 1;
 
+  //address
   void _openAddress(context) async {
     final addressData = await GoRouter.of(
       context,
@@ -42,8 +48,27 @@ class _PlaceOrderState extends State<PlaceOrder> {
     });
   }
 
+  //card
+  void _openCard() async {
+    final cardData = await GoRouter.of(context).push(AppRouter.kAddCredit);
+    if (cardData != null) {
+      setState(() {
+        _savedCard = cardData;
+      });
+    }
+  }
+
+  void _editCard() async {
+    final editCard = await GoRouter.of(context).push(AppRouter.kAddCredit);
+    setState(() {
+      _savedCard = editCard;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    double unitPrice = widget.product.price;
+    double totall = unitPrice * qwantity;
     return Scaffold(
       appBar: CustomAppbar(isBlackk: false),
       body: Padding(
@@ -55,11 +80,13 @@ class _PlaceOrderState extends State<PlaceOrder> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Customtext(
-                  text: "SHIPPING ADRESS",
-                  color: Colors.grey,
-                  fontSize: 20,
-                ),
+                _savedCard != null && _savedAddress != null
+                    ? SizedBox.shrink()
+                    : Customtext(
+                        text: "SHIPPING ADRESS",
+                        color: Colors.grey,
+                        fontSize: 20,
+                      ),
                 Gap(15),
 
                 Padding(
@@ -71,6 +98,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Customtext(
                                     text:
@@ -114,47 +142,94 @@ class _PlaceOrderState extends State<PlaceOrder> {
               ],
             ),
             Gap(20),
-            customContainer(
-              "Add New Address",
-              Icons.add,
-              false,
-              () {
-                _openAddress(context);
-              },
-              () {
-                _openAddress(context);
-              },
-            ),
-            Gap(30),
             _savedAddress == null
-                ? Customtext(
-                    text: "Shipping MethoD".toUpperCase(),
-                    color: Colors.grey,
-                    fontSize: 20,
+                ? customContainer(
+                    "Add New Address",
+                    Icons.add,
+                    false,
+                    () {
+                      _openAddress(context);
+                    },
+                    () {
+                      _openAddress(context);
+                    },
                   )
                 : SizedBox.shrink(),
-            Gap(15),
-            customContainer(
-              "Pickup at store",
-              Icons.keyboard_arrow_down_sharp,
-              true,
-              () {},
-              () {},
-            ),
             Gap(30),
-            Customtext(
-              text: "Payment method".toUpperCase(),
-              color: Colors.grey,
-              fontSize: 20,
-            ),
+
+            _savedCard != null && _savedAddress != null
+                ? SizedBox.shrink()
+                : ShippingMethod(),
+            _savedCard != null && _savedAddress != null
+                ? SizedBox.shrink()
+                : Customtext(
+                    text: "Payment method".toUpperCase(),
+                    color: Colors.grey,
+                    fontSize: 20,
+                  ),
             Gap(15),
-            customContainer(
-              "select payment method",
-              Icons.keyboard_arrow_down_sharp,
-              false,
-              () {},
-              () {},
+
+            _savedCard != null
+                ? Column(
+                    children: [
+                      CustomDivider(),
+                      Gap(10),
+                      Row(
+                        children: [
+                          SvgPicture.asset(
+                            "assets/svgs/Mastercard.svg",
+                            width: 40,
+                          ),
+                          Gap(10),
+                          Customtext(
+                            text: "Master Card Ending",
+                            color: Colors.black,
+                          ),
+                          Gap(10),
+                          Customtext(
+                            text:
+                                "••••${_savedCard["number"].toString().substring(_savedCard["number"].length - 2)}",
+                            color: Colors.black,
+                          ),
+
+                          Spacer(),
+                          IconButton(
+                            onPressed: _editCard,
+                            icon: SvgPicture.asset("assets/svgs/arrow.svg"),
+                          ),
+                        ],
+                      ),
+                      Gap(10),
+                      CustomDivider(),
+                    ],
+                  )
+                : customContainer(
+                    "select payment method",
+                    Icons.keyboard_arrow_down_sharp,
+                    false,
+                    () {
+                      _openCard();
+                    },
+                    () {
+                      _openCard();
+                    },
+                  ),
+            Gap(15),
+            CardWidget(
+              product: widget.product,
+              qwantity: qwantity,
+              onIncrement: () {
+                setState(() {
+                  qwantity++;
+                });
+              },
+              onDecrement: () {
+                setState(() {
+                  if (qwantity > 1) qwantity--;
+                });
+              },
             ),
+
             Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -166,7 +241,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                   color: AppColors.primary,
                 ),
                 Customtext(
-                  text: "\$${widget.total.toStringAsFixed(2)}",
+                  text: "\$${totall.toStringAsFixed(2)}",
                   fontSize: 20,
                   weight: FontWeight.bold,
                   color: Colors.red.shade200,

@@ -1,4 +1,5 @@
 import 'package:fashion/models/product_model.dart';
+import 'package:fashion/screens/add_credit_card/add_credit_card.dart';
 import 'package:fashion/screens/home/home.dart';
 import 'package:fashion/screens/checkout/checkout.dart';
 import 'package:fashion/screens/adress/add_adress.dart';
@@ -11,6 +12,7 @@ abstract class AppRouter {
   static const kCheckOut = "/checkout";
   static const kPlaceOrder = "/placeorder";
   static const kAddAdress = "/addadress";
+  static const kAddCredit = "/addcreditcard";
 
   static final router = GoRouter(
     routes: [
@@ -38,6 +40,12 @@ abstract class AppRouter {
         builder: (context, state) {
           final product = state.extra as ProductModel;
           return AddAdress(product: product);
+        },
+      ),
+      GoRoute(
+        path: AppRouter.kAddCredit,
+        builder: (context, state) {
+          return AddCreditCard();
         },
       ),
     ],

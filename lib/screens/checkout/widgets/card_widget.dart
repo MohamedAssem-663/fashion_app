@@ -9,12 +9,12 @@ class CardWidget extends StatelessWidget {
   const CardWidget({
     super.key,
     required this.product,
-    required this.quantity,
+    required this.qwantity,
     required this.onIncrement,
     required this.onDecrement,
   });
   final ProductModel product;
-  final int quantity;
+  final int qwantity;
   final VoidCallback onIncrement;
   final VoidCallback onDecrement;
 
@@ -58,7 +58,7 @@ class CardWidget extends StatelessWidget {
                   ),
                   Gap(10),
                   Customtext(
-                    text: quantity.toString(),
+                    text: qwantity.toString(),
                     color: AppColors.primary,
                     weight: FontWeight.bold,
                   ),
