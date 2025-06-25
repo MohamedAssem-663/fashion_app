@@ -35,7 +35,10 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: AppRouter.kAddAdress,
-        builder: (context, state) => AddAdress(),
+        builder: (context, state) {
+          final product = state.extra as ProductModel;
+          return AddAdress(product: product);
+        },
       ),
     ],
   );

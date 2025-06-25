@@ -15,6 +15,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: (v) => "Please fill the field",
       controller: controller,
       keyboardType: keyboardType,
       decoration: InputDecoration(
