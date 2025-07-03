@@ -37,7 +37,7 @@ class _CheckOutState extends State<CheckOut> {
             Header(title: "CheckOut"),
             CardWidget(
               product: widget.product,
-              quantity: qwantity,
+              qwantity: qwantity,
               onIncrement: () {
                 setState(() {
                   qwantity++;
