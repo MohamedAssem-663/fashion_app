@@ -60,92 +60,89 @@ class _AddAdressState extends State<AddAdress> {
       appBar: CustomAppbar(isBlackk: false),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: Column(
+        child: ListView(
           children: [
             Header(title: "Add Adress".toUpperCase()),
-            Expanded(
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: CustomTextField(
-                            label: "First Name",
-                            controller: firstNameController,
-                          ),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: CustomTextField(
+                          label: "First Name",
+                          controller: firstNameController,
                         ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: CustomTextField(
-                            label: "Last Name",
-                            controller: lastNameController,
-                          ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: CustomTextField(
+                          label: "Last Name",
+                          controller: lastNameController,
                         ),
-                      ],
-                    ),
-                    Gap(16),
-                    CustomTextField(
-                      label: "Address",
-                      controller: addressController,
-                    ),
-                    Gap(16),
+                      ),
+                    ],
+                  ),
+                  Gap(16),
+                  CustomTextField(
+                    label: "Address",
+                    controller: addressController,
+                  ),
+                  Gap(16),
 
-                    CustomTextField(label: "City", controller: cityController),
-                    Gap(16),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: CustomTextField(
-                            label: "State",
-                            controller: stateController,
-                          ),
+                  CustomTextField(label: "City", controller: cityController),
+                  Gap(16),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: CustomTextField(
+                          label: "State",
+                          controller: stateController,
                         ),
-                        Gap(16),
-                        Expanded(
-                          child: CustomTextField(
-                            label: "ZIP Code",
-                            keyboardType: TextInputType.number,
-                            controller: zipCodeController,
-                          ),
+                      ),
+                      Gap(16),
+                      Expanded(
+                        child: CustomTextField(
+                          label: "ZIP Code",
+                          keyboardType: TextInputType.number,
+                          controller: zipCodeController,
                         ),
-                      ],
-                    ),
-                    Gap(16),
-                    CustomTextField(
-                      label: "Phone Number",
-                      keyboardType: TextInputType.phone,
-                      controller: phoneController,
-                    ),
-                    const Spacer(),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                  Gap(16),
+                  CustomTextField(
+                    label: "Phone Number",
+                    keyboardType: TextInputType.phone,
+                    controller: phoneController,
+                  ),
+                  SizedBox(height: 230),
+                  CustomButton(
+                    isSvgg: false,
+                    titel: "Add Now".toUpperCase(),
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        return;
+                      } else {
+                        final addressData = {
+                          'firstName': firstNameController.text,
+                          'lastName': lastNameController.text,
+                          'address': addressController.text,
+                          'city': cityController.text,
+                          'state': stateController.text,
+                          'zipCode': zipCodeController.text,
+                          'phone': int.tryParse(phoneController.text) ?? 0,
+                        };
+
+                        GoRouter.of(context).pop(addressData);
+                      }
+                    },
+                  ),
+                  const Gap(30),
+                ],
               ),
             ),
-            CustomButton(
-              isSvgg: false,
-              titel: "Add Now".toUpperCase(),
-              onTap: () {
-                if (_formKey.currentState!.validate()) {
-                  return;
-                } else {
-                  final addressData = {
-                    'firstName': firstNameController.text,
-                    'lastName': lastNameController.text,
-                    'address': addressController.text,
-                    'city': cityController.text,
-                    'state': stateController.text,
-                    'zipCode': zipCodeController.text,
-                    'phone': int.tryParse(phoneController.text) ?? 0,
-                  };
-
-                  GoRouter.of(context).pop(addressData);
-                }
-              },
-            ),
-
-            const Gap(30),
           ],
         ),
       ),

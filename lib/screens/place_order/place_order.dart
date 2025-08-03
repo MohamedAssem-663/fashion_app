@@ -180,12 +180,13 @@ class _PlaceOrderState extends State<PlaceOrder> {
                           children: [
                             SvgPicture.asset(
                               "assets/svgs/Mastercard.svg",
-                              width: 40,
+                              width: 35,
                             ),
                             Gap(10),
                             Customtext(
                               text: "Master Card Ending",
                               color: Colors.black,
+                              fontSize: 14,
                             ),
                             Gap(10),
                             Customtext(

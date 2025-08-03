@@ -9,11 +9,11 @@ class About extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Customtext(text: "About", fontSize: 30),
+        Customtext(text: "About", fontSize: 25),
         Gap(30),
-        Customtext(text: "Contact", fontSize: 30),
+        Customtext(text: "Contact", fontSize: 25),
         Gap(30),
-        Customtext(text: "Blog", fontSize: 30),
+        Customtext(text: "Blog", fontSize: 25),
       ],
     );
   }

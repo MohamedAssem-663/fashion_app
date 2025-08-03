@@ -26,18 +26,18 @@ class CustomButton extends StatelessWidget {
         width: double.infinity,
         height: 60,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               isSvg
                   ? SvgPicture.asset("assets/svgs/shopping bag.svg")
-                  : SizedBox.shrink(),
-              Gap(15),
+                  : SizedBox(width: 0),
+              Gap(10),
               Customtext(
                 text: titel.toUpperCase(),
                 color: Colors.white,
-                fontSize: 20,
+                fontSize: 16,
                 weight: FontWeight.bold,
               ),
             ],

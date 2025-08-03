@@ -45,7 +45,7 @@ class _AddCreditCardState extends State<AddCreditCard> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Header(title: "Payment method".toUpperCase()),
+                Header(title: "Payment".toUpperCase()),
                 Gap(15),
                 CreditCardWidget(
                   cardNumber: cardNumber,

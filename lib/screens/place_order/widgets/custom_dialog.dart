@@ -72,6 +72,7 @@ class CustomDailog extends StatelessWidget {
                   child: CustomButton(
                     isSvgg: false,
                     titel: "Submit",
+
                     onTap: () {
                       Navigator.pop(context);
                       Navigator.pop(context);
@@ -79,7 +80,7 @@ class CustomDailog extends StatelessWidget {
                     },
                   ),
                 ),
-                Gap(20),
+                Gap(10),
                 Expanded(
                   child: CustomButton(
                     isSvgg: false,
